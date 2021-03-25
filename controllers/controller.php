@@ -1,6 +1,8 @@
 <?php
 require('../model/model.php');
 
+//essai de merge 
+
 //Requête des articles
 
 $sql='SELECT id_article,titre_article,DATE_FORMAT(date_article,\'%d/%m/%Y à %Hh%imin%ss\' )
