@@ -1,26 +1,26 @@
 <?php
-require('../model/model.php');
+require('model/model.php');
 
-//essai de merge 
+function HomePage()
+{
+	require('view/HomePage.php');
+}
 
-//Requête des articles
+function getListPost()
+{
+	$instance_publication=new PostManager();
+	$resultat= $instance_publication->getPosts();
+	require('view/listPost.php');
+}
 
-$sql='SELECT id_article,titre_article,DATE_FORMAT(date_article,\'%d/%m/%Y à %Hh%imin%ss\' )
-		 AS date_article_fr,chapo,contenu,auteur FROM publication ORDER BY date_article DESC LIMIT 0,6';
-$resultat=$bdd->query($sql);
+function getPostComments()
+{
+	$instance_post=new PostManager();
 
-//Requête de l'article et des commentaires
+	$post=$instance_post->getPost($_GET['id_article']);
+	$comment= $instance_post->getComments($_GET['id_article']);
+	require('view/postView.php');
+}
 
-	// Article
-$sql_article='SELECT id_article,titre_article,DATE_FORMAT(date_article,\'%d/%m/%Y à %Hh%imin%ss\' )
-		 AS date_article_fr,chapo,contenu,auteur FROM publication WHERE id_article=:id_article ORDER BY date_article DESC';
-$req=$bdd->prepare($sql_article);
-$postId=10;
-$req->execute(array('id_article' =>$postId));
-$post=$req->fetch();
 
-	//Commentaires
-$sql_comment='SELECT id_commentaires,id_publication,auteur,commentaire,DATE_FORMAT(date_commentaire,\'%d/%m/%Y à %Hh%imin%ss\' ) AS date_commentaire_fr FROM commentaires WHERE id_publication=? ORDER BY date_commentaire DESC LIMIT 0,5';
-$comment=$bdd->prepare($sql_comment);
-$comment->execute(array($postId));
 ?>
