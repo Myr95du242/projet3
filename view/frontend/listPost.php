@@ -1,9 +1,6 @@
-<?php $titre_article='publication'; ?>
+<?php $title='publication'; ?>
 
 <?php ob_start(); ?>
-<!-- Contenu à mettre dans le template -->
-    
-<!--Publication Section -->
     <section id="portfolio">
         <div class="container">
             <div class="row">
@@ -18,16 +15,16 @@
             ?>
                  <div class="col-sm-4 portfolio-item">
                     <h3>
-                        <strong>  <?= htmlspecialchars($data['titre_article'])?> 
+                        <strong>  <?= htmlspecialchars($data['title'])?> 
                         </strong><br/> 
                     </h3>
                     <h5>
-                        <em><?= $data['date_article_fr'] ?></em>
+                        <em><?= $data['date_post_fr'] ?></em>
                     </h5>                   
                     <p>
-                       <?php  echo '<em>'.nl2br(htmlspecialchars($data['chapo']) ).'</em>'.'<br/>'; ?>
+                       <?= '<em>'.nl2br(htmlspecialchars($data['chapo']) ).'</em>'.'<br/>'; ?>
                     </p>
-                    <a href=index.php?action=getPostComments&amp;id_article=<?= $data['id_article']; ?>" class="portfolio-link" data-toggle="modal"> 
+                    <a href=index.php?action=getPostComments&amp;id_article=<?= $data['id_post']; ?>" class="portfolio-link" data-toggle="modal"> 
                         <em>Commentaires</em>
                     </a>
                 </div>  
@@ -38,7 +35,7 @@
         </div>
     </section>
 
-<?php $contenu=ob_get_clean(); ?>
+<?php $content=ob_get_clean(); ?>
 <?php require('template.php'); ?>
 
 

@@ -1,4 +1,4 @@
-<?php $titre_article='publication'; ?>
+<?php $title = htmlspecialchars($post['title']);  ?>
 <?php ob_start(); ?>
 
     <!-- Publication -->
@@ -12,49 +12,46 @@
             </div>
 
             <div class="col-sm-12 portfolio-item">
-                <a href="index.php"><em>Repartir à la liste de publication</em></a><br/><br/>
+                <a href="index.php?action=getListPost"><em>Repartir à la liste de publication</em></a><br/><br/>
                 <h3>
-                    <?= htmlspecialchars($post['titre_article'])?>
+                    <?= htmlspecialchars($post['title'])?>
                 </h3>  
                 <h5>
-                    <br/><em> le <?= $post['date_article_fr']; ?> </em>
+                    <br/><em> le <?= $post['date_post_fr']; ?> </em>
                 </h5>                 
                 <p>
-                   <?php  echo nl2br(htmlspecialchars($post['chapo']) ).'<br/>'; ?>
+                   <?= nl2br(htmlspecialchars($post['chapo']) ).'<br/>'; ?>
                 </p><br/>
                 <p>
-                   <?php  echo nl2br(htmlspecialchars($post['contenu']) ).'<br/>'; ?>
+                   <?= nl2br(htmlspecialchars($post['content']) ).'<br/>'; ?>
                 </p><br/>
                  <p>
-                  <em> <?php  echo nl2br(htmlspecialchars($post['auteur']) ).'<br/>'; ?></em>
+                  <em> <?= nl2br(htmlspecialchars($post['author']) ).'<br/>'; ?></em>
                 </p><br/>
             </div>  
             <div class="row">
                 <div class="col-sm-12 portfolio-item">
                     <h3>Commentaires </h3>  
-
-                    <!-- Ajout des commentaires -->
-                    <form action="#" method="post">
+                 <!-- Ajout des commentaires if(isset($post['id_post']) AND !empty($post['id_post']) ) { ;}-->
+                    <form action="index.php?action=addComments&amp;id_article=<?= $post['id_post'] ?>" method="post">
                         <div class="form-group">
-                            <label for="auteur">Auteur</label><br/>
-                            <input type="text" name="auteur" />
+                            <label for="author">Auteur</label><br/>
+                            <input type="text" name="author" />
                         </div>
                         <div>
-                            <label for="commentaire">Commentaire</label><br/>
-                        <textarea id="commentaire" name="commentaire"></textarea> 
+                            <label for="comments">Commentaire</label><br/>
+                        <textarea id="comments" name="comments"></textarea> 
                         </div>
                         <div>
                             <input type="submit" name="" />
                         </div>                        
                     </form>
                    <?php
-                        // Récupération des commentaires
-                    //$post->closeCursor();
-                    while ($commentaire= $comment->fetch()) 
+                    while($commentaire= $comment->fetch()) 
                     {
                     ?>
-                        <p><strong><?= '<br/>'.htmlspecialchars($commentaire['auteur']) ?></strong> le <em> <?= $commentaire['date_commentaire_fr'] ?></em></p>
-                        <p><?= nl2br(htmlspecialchars($commentaire['commentaire'])).'&nbsp;&nbsp;' ?>
+                        <p><strong><?= '<br/>'.htmlspecialchars($commentaire['author']) ?></strong> le <em> <?= $commentaire['date_comment_fr'] ?></em></p>
+                        <p><?= nl2br(htmlspecialchars($commentaire['comments'])).'&nbsp;&nbsp;' ?>
                             <a href="#"><em>Modifier Commentaires</em></a>
                         </p>
                     <?php
@@ -66,5 +63,5 @@
         </div>
     </section>
 
-<?php $contenu=ob_get_clean(); ?>
+<?php $content=ob_get_clean(); ?>
 <?php require('template.php'); ?>

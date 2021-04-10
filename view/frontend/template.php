@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title><?= $titre_article; ?> </title>
+    <title><?= $title; ?> </title>
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Theme CSS -->
-    <link href="css/freelancer.min.css" rel="stylesheet">
+    <link href="public/css/freelancer.min.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
@@ -34,7 +34,7 @@
                         <a href="#page-top"></a>
                     </li>
                      <li class="page-scroll">
-                        <a href="#accueil">Accueil</a>
+                        <a href="index.php?action=homePage">Accueil</a>
                     </li>
                     <li class="page-scroll">
                         <a href="index.php?action=getListPost">Publication</a>
@@ -52,7 +52,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <?= $contenu; ?> 
+    <?= $content; ?> 
 
  <!-- Footer -->
 <footer class="text-center">
@@ -95,19 +95,19 @@
     </div>
 </footer>
       <!-- jQuery -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="public/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="public/js/jqBootstrapValidation.js"></script>
+    <script src="public/js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="js/freelancer.min.js"></script>
+    <script src="public/js/freelancer.min.js"></script>
 </body>
 </html> 

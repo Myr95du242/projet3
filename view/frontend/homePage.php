@@ -1,4 +1,4 @@
-<?php $titre_article='publication'; ?>
+<?php $title='Accueil'; ?>
 <?php ob_start(); ?>
 
     <!-- HEADER-->
@@ -93,6 +93,6 @@
         </div>
     </section>
 
-<?php $contenu=ob_get_clean(); ?>
+<?php $content=ob_get_clean(); ?>
 <?php require('template.php'); ?>
  

@@ -1,9 +1,6 @@
 <?php
 
-//Connexion à la base bdd
-  //  require('model/model.php');
-
-require('controllers/controller.php');
+require('controllers/frontend.php');
 
 try 
 {
@@ -28,6 +25,26 @@ try
 					throw new Exception('Aucun identifiant de cette publication envoyé');		
 				}
 				break;
+
+			case 'addComments':
+				if (isset($_GET['id_article']) AND $_GET['id_article'] >0) 
+				{
+					if (!empty($_POST['author']) AND !empty($_POST['comments'] ) )
+					{
+						addComments($_GET['id_article'],$_POST['author'],$_POST['comments']);
+					}
+					else
+					{
+						//echo 'Erreur: tous les champs ne sont pas remplis !';
+						throw new Exception('Tous les champs ne sont pas remplis !');
+					}					
+				}
+				else{
+					//echo 'Erreur: aucun identifiant de publication envoyé';
+						throw new Exception('Aucun identifiant de publication envoyé !');					
+				}
+				break;
+
 			default:
 				HomePage();			
 				break;
