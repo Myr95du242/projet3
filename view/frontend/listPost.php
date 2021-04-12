@@ -1,4 +1,4 @@
-<?php $title='publication'; ?>
+<?php $title='post'; ?>
 
 <?php ob_start(); ?>
     <section id="portfolio">

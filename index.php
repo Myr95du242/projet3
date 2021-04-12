@@ -1,7 +1,6 @@
 <?php
 
 require('controllers/frontend.php');
-
 try 
 {
 	if (isset($_GET['action'])) 
@@ -11,7 +10,7 @@ try
 			case 'HomePage':
 				HomePage();
 				break;
-				
+
 			case 'getListPost':
 				getListPost();
 				break;
@@ -43,6 +42,22 @@ try
 					//echo 'Erreur: aucun identifiant de publication envoyé';
 						throw new Exception('Aucun identifiant de publication envoyé !');					
 				}
+				break;
+
+			case 'connectView':
+				connectView();
+				break;
+
+			case 'checkingConnect':
+				checkingConnect();
+				break;
+
+			case 'connectRegisterView':
+				connectRegisterView();
+				break;
+
+			case 'checkingRegister':
+				checkingRegister();
 				break;
 
 			default:

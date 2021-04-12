@@ -25,6 +25,14 @@ class CommentManager extends Manager
         return $resultat;
     }
 
+      // Login and Logout
+    public function checkConnect()
+    {
+       $bdd= $this->bddConnexion(); 
+       return $bdd;
+    }
+
+
 }
 	
 ?>

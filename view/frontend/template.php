@@ -11,6 +11,7 @@
     <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Theme CSS -->
     <link href="public/css/freelancer.min.css" rel="stylesheet">
+    <!-- <link href="public/css/style.css" rel="stylesheet"> -->
     <!-- Custom Fonts -->
     <link href="public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -40,10 +41,10 @@
                         <a href="index.php?action=getListPost">Publication</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#modifs">Login</a>
+                        <a href="index.php?action=connectView">Login</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contactez">Contact</a>
+                        <a href="index.php?">Contact</a>
                     </li>
                 </ul>
             </div>
