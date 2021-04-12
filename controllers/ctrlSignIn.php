@@ -34,7 +34,7 @@ class ctrlSignIn
 				$message='Bienvenue Mme l\'administrateuse';
 				$_SESSION['id']= $data['id_member'];
 				$_SESSION['admin']= $pseudo_admin_defaut;
-					header('Location:index.php?action=connectView&message='.$message);
+					header('Location:index.php?action=adminView&message='.$message);
 			}
 			else
 			{
