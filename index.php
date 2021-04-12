@@ -1,7 +1,11 @@
 <?php
 
-require('controllers/frontend.php');
-try 
+//require('controllers/frontend.php');
+require_once 'controllers/switcher.php';
+$switcher= new Switcher();
+$switcher->switchRequete();
+
+/*try 
 {
 	if (isset($_GET['action'])) 
 	{
@@ -73,6 +77,6 @@ try
 {
 	echo 'Erreur : '.$e->getMessage();
 }
-    
+    */
 ?>
 

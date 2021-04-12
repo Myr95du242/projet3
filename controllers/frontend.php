@@ -4,12 +4,12 @@ session_start();
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 
-
+/*
 function HomePage()
 {
 	require('view/frontend/HomePage.php');
 }
-
+*/
 function getListPost()
 {
 	$instance_publication=new \Myrna\projet3\Blog\model\PostManager();

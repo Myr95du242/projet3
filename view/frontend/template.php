@@ -35,7 +35,7 @@
                         <a href="#page-top"></a>
                     </li>
                      <li class="page-scroll">
-                        <a href="index.php?action=homePage">Accueil</a>
+                        <a href="index.php?action=homeView">Accueil</a>
                     </li>
                     <li class="page-scroll">
                         <a href="index.php?action=getListPost">Publication</a>
