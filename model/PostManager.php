@@ -1,11 +1,11 @@
 <?php
-namespace Myrna\projet3\blog\model;
+namespace myrna\blog\model;
 
 require_once('Manager.php');
 
 class PostManager extends Manager
 {
-	function getPosts()
+	public function getPosts()
 	{
 	    $bdd=$this->bddConnexion();
 	    $sql='SELECT id_post,title,DATE_FORMAT(date_post,\'%d/%m/%Y à %Hh%imin%ss\' )
@@ -15,7 +15,7 @@ class PostManager extends Manager
 	}
 
 	// récupération d'un post
-	function getPost($postId)
+	public function getPost($postId)
 	{   
 	    $bdd=$this->bddConnexion();
 	    $sql_post='SELECT id_post,title,DATE_FORMAT(date_post,\'%d/%m/%Y à %Hh%imin%ss\' )

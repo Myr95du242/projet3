@@ -1,12 +1,16 @@
 <?php
-namespace Myrna\projet3\blog\model;
-
+namespace myrna\blog\model;
 require_once('Manager.php');
 
 class CommentManager extends Manager
 {	
+  
+ /* public __construct()
+  {
+
+  } */
 	// retrieving comments to the post
-	function getComments($postId)
+	public function getComments($postId)
 	{   
 	    $bdd=$this->bddConnexion();
 	    $sql_comment='SELECT id_comment,id_post,author,comments,DATE_FORMAT(date_comment,\'%d/%m/%Y à %Hh%imin%ss\' ) AS date_comment_fr FROM comment WHERE id_post=? ORDER BY date_comment DESC LIMIT 0,5';
@@ -14,25 +18,65 @@ class CommentManager extends Manager
 	    $req->execute(array($postId));
 		return $req;
 	} 
-
+//Add comments to the post
 	public function addComment($id_post,$author,$comments)
     {
         $bdd=$this->bddConnexion();
         //request
-        $data= $bdd->prepare('INSERT INTO comment(id_post,author,comments,date_comment)VALUES(?,?,?,NOW() ) ');
-
-       $resultat=$data->execute(array($id_post,$author,$comments) );
+        $data= $bdd->prepare('INSERT INTO comment(id_post,author,comments,date_comment)VALUES( ?,?,?,NOW() ) ');
+        $resultat=$data->execute(array($id_post,$author,$comments) );
         return $resultat;
     }
 
-      // Login and Logout
-    public function checkConnect()
+//All Comments
+    //Get comments $title_entered,$content_entered,$chapo_entered,$,$idPost
+   public function getComment()
+   {
+      $bdd = $this->bddConnexion();
+      $reqComment=$bdd->query('SELECT * FROM comment WHERE id_comment ORDER BY id_comment DESC');
+      return $reqComment;
+   } 
+   // Check comment
+    function CheckComment()
+      {
+        $bdd=$this->bddConnexion(); 
+        $reqComment='SELECT * FROM comment WHERE id_comment=?';
+        $req=$bdd->prepare($reqComment);
+        return $req;
+      }
+
+    //Check Comments
+ /* public function checkGetComment()
     {
-       $bdd= $this->bddConnexion(); 
-       return $bdd;
-    }
+      $bdd=$this->bddConnexion(); 
+      $reqComment='SELECT * FROM comment WHERE id_comment=?';
+      $req=$bdd->prepare($reqComment);
+      return $req;
+    } */
 
+   //deleteComment coté admin
+  public function deleteComments($idPost)
+  {
+     $bdd=$this->bddConnexion(); 
+     $req=$bdd->prepare('DELETE FROM comment WHERE id_comment =?');
+     return $req;
+  }
+    //Update comments
+  function updateComment($author_entered,$comment_enterer,$idComment)//editer comment
+  {
+    $bdd=$this->bddConnexion(); 
+    $updateComment=$bdd->prepare('UPDATE comment SET author=?, comments=? WHERE id_comment=?');
+    $data=$updateComment->execute(array($author_entered,$comment_enterer,$idComment) );
+    return $data;  
+  }
 
+    // Login and Logout
+  public function checkConnect()
+  {
+     $bdd= $this->bddConnexion(); 
+     return $bdd;
+  }
+  
 }
 	
 ?>

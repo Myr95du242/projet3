@@ -1,8 +1,8 @@
 <?php
+session_start();
 
-//require('controllers/frontend.php');
 require_once 'controllers/switcher.php';
-$switcher= new Switcher();
+$switcher= new \myrna\blog\controllers\Switcher();
 $switcher->switchRequete();
 
 ?>

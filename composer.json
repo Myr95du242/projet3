@@ -1,0 +1,15 @@
+{
+    "name": "myrna/blog",
+    "authors": [
+        {
+            "name": "Myrna NZ",
+            "email": "mnzabi.lan@gmail.com"
+        }
+    ],
+	"autoload": {
+        "psr-4": {
+            "myrna\\blog\\": "controllers/"
+        }
+	},
+    "require": {}
+}

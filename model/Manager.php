@@ -1,5 +1,5 @@
 <?php
-namespace Myrna\projet3\blog\model;
+namespace myrna\blog\model;
 
 class Manager
 {
