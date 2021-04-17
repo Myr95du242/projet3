@@ -1,9 +1,21 @@
 <?php
 namespace myrna\blog\controllers;
+<<<<<<< HEAD
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 class ctrlHomeView
 {
+=======
+
+require_once('model/PostManager.php');
+require_once('model/CommentManager.php');
+
+
+class ctrlHomeView
+{
+	
+
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
   public function homeView() 
 	{
 		require('view/frontend/homeView.php');

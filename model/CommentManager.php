@@ -76,6 +76,7 @@ class CommentManager extends Manager
      $bdd= $this->bddConnexion(); 
      return $bdd;
   }
+<<<<<<< HEAD
   // Downloads CV
   public function  getCv()
   {
@@ -96,6 +97,9 @@ class CommentManager extends Manager
     $data=$req->execute(array($idUrl));
        return $data;
   } */
+=======
+  
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 }
 	
 ?>

@@ -1,6 +1,12 @@
 <?php $title='homeView';?>
 <?php ob_start();?>
+<<<<<<< HEAD
 <!-- Contenu à mettre dans le template -->    
+=======
+
+<!-- Contenu à mettre dans le template -->
+    
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
     <!-- HEADER -->
     <header  style="background-color: #ffcc14">
         <div class="container">
@@ -40,12 +46,16 @@
                     </p>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
+<<<<<<< HEAD
                     <?php      
                       /* while ($data=$req->fetch()) 
                         { */
                             echo '<a class="btn btn-lg btn-outline" href="'.$data['url_file'].'"><i class="fa fa-download"></i> Download '.$data['name']. '</a>' ;
                       //  } 
                     ?>                                
+=======
+                                                 
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
                 </div>
             <!--    <div class="col-lg-8 col-lg-offset-2 text-center">
                   <a class="btn btn-lg btn-outline" href=""><i class="fa fa-download"></i> Download </a>        

@@ -1,9 +1,22 @@
 <?php
+<<<<<<< HEAD
+=======
+/**
+Class for processing items.
+
+*
+Reading in the database, deleting and editing articles
+*/
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 namespace myrna\blog\controllers;
 
 class ctrlArticles{
 
+<<<<<<< HEAD
 	//Ajout article par l'admin
+=======
+	//Add posts 
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 	public function addPost($title,$content,$chapo,$author){
 		$addpost=new \myrna\blog\model\PostManager();
 		$posts=$addpost->addPost($title,$content,$chapo,$author);
@@ -17,13 +30,21 @@ class ctrlArticles{
 		}
 	}
 
+<<<<<<< HEAD
 	//Afficher la page article 
+=======
+	//display view for post add by admin 
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 	public function addPostView()
 	{
 		require('view/backend/articlesView.php');
 	}
 
+<<<<<<< HEAD
 	//Supprimer articles
+=======
+	//delete articles
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 	public function deletePost(){
 		$deleteArticle=new \myrna\blog\model\PostManager();
 
@@ -49,7 +70,11 @@ class ctrlArticles{
 		}
 	}
 
+<<<<<<< HEAD
 	//Affiche l'article backend
+=======
+	//View article Backend
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 	public function displayArticle()
 	{
 		if (!$_SESSION['password']) 
@@ -61,12 +86,20 @@ class ctrlArticles{
 		require('view/backend/displayArticles.php');
 	}
 
+<<<<<<< HEAD
 	//Modififier articles
+=======
+	//udpadet articles
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 	public function updateArticle(){
 		$check=new \myrna\blog\model\PostManager();
 		if(isset($_GET['id']) AND !empty($_GET['id']))
 		{		
+<<<<<<< HEAD
 			$idPost=intval($_GET['id']);
+=======
+			$idPost=intval($_GET['id']);// conversion to int
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 			$req_article= $check->checkArticle();
 			$req_article->execute(array($idPost)); 
 			if ($req_article->rowCount()) 
@@ -98,7 +131,11 @@ class ctrlArticles{
 		}	
 	}
 
+<<<<<<< HEAD
 	//Récupération des données dans la page checkArticle
+=======
+	//Data recovery in the section check articles View
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 	public function updateArticlePost()
 	{
 		$check=new \myrna\blog\model\PostManager();

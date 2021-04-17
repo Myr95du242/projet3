@@ -47,7 +47,11 @@ class ctrlComments
 	    }
 		 require('view/backend/usersView.php'); 
 	}
+<<<<<<< HEAD
 	//Delete commentaires des users par l'administrateur
+=======
+	//Delete user's comment by admin
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 	public function deleteComment()
 	{
 		$instance_Comment=new \myrna\blog\model\CommentManager();
@@ -74,7 +78,11 @@ class ctrlComments
 	}
 
 	//Comments  Frontend
+<<<<<<< HEAD
 	//Obtenir commentaire et afficher sur la page
+=======
+	//get comment and display view
+>>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 	public function getCommentUser()
 	{
 		$check=new \myrna\blog\model\CommentManager();
