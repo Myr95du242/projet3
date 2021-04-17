@@ -1,8 +1,10 @@
 <?php
-namespace Myrna\projet3\blog\model;
+namespace myrna\blog\model;
 
 class Manager
 {
+
+	//private static $bdd;
 	// Connecting to the database
 	protected function bddConnexion()
 	{

@@ -38,9 +38,9 @@
 				</form><br/>
 				<div class="col-sm-8 portfolio-item bd-example">
 					<h3> Documents utiles</h3>
-					<!--<form action="index.php?action=fileUsefuls" method="POST" enctype="multipart/form-data"><input type="file" name="fichier" class="form-control"><br/>
+					<form action="index.php?action=fileUsefuls" method="POST" enctype="multipart/form-data"><input type="file" name="fichier" class="form-control"><br/>
 						<input type="submit" name="envoi">		
-					</form> -->
+					</form> 
 				</div>
 			<?php
 				if (isset($_GET['message']))

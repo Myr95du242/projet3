@@ -1,21 +1,27 @@
 <?php
-namespace Myrna\projet3\blog\model;
+namespace myrna\blog\model;
 
 require_once('Manager.php');
 
 class PostManager extends Manager
 {
-	function getPosts()
+
+  /* Préparation d'insertion
+   $sql=
+
+
+  */
+	public function getPosts()
 	{
 	    $bdd=$this->bddConnexion();
 	    $sql='SELECT id_post,title,DATE_FORMAT(date_post,\'%d/%m/%Y à %Hh%imin%ss\' )
 			 AS date_post_fr,chapo,content,author FROM post ORDER BY date_post DESC LIMIT 0,5';
 	    $request=$bdd->query($sql);
 		return $request;
-	}
+	} 
 
 	// récupération d'un post
-	function getPost($postId)
+	public function getPost($postId)
 	{   
 	    $bdd=$this->bddConnexion();
 	    $sql_post='SELECT id_post,title,DATE_FORMAT(date_post,\'%d/%m/%Y à %Hh%imin%ss\' )
@@ -27,7 +33,7 @@ class PostManager extends Manager
 		return $post;
 	}
 
-///Ajout article, suppression et modification
+///add article, delete et update
 	//Add post
 	public function addPost($title,$content,$chapo,$author)
     {   
@@ -69,6 +75,23 @@ class PostManager extends Manager
       return $data;  
     }  
 
+    //add file in the bdd
+    public function fileUseful($name,$url_file)
+    {
+      $bdd=$this->bddConnexion(); 
+      $request='INSERT INTO file(name,url_file)VALUES(?,?)';
+      $req=$bdd->prepare($request);
+      $data=$req->execute(array($name,$url_file));
+      return $data;
+    }
+    ////check downloads docs 
+    function checkFile()
+    {
+       $bdd=$this->bddConnexion();        
+       $request='SELECT * FROM file';       
+       $result=$bdd->query($request);
+       return $result;
+    }
 }
 
 	

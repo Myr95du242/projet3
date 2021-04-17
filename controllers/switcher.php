@@ -1,55 +1,40 @@
 <?php
-session_start();
-
+namespace myrna\blog\controllers;
+//require_once('librairies/autoload.php');
 //appel controleur
 require_once('controllers/ctrlHomeView.php');
 require_once('controllers/ctrlListPost.php');
 require_once('controllers/ctrlPostView.php');
-require_once('controllers/ctrlSignIn.php');
-require_once('controllers/ctrlSignUp.php');
 require_once('controllers/ctrlAdminView.php');
-require_once('controllers/ctrlLogOut.php');
-require_once('controllers/ctrlAddPost.php');
-require_once('controllers/ctrlAddPostView.php');
-require_once('controllers/ctrlDisplayArticles.php');
-require_once('controllers/ctrldeletePost.php');
-require_once('controllers/ctrlupdateArticle.php');
-require_once('controllers/ctrlupdateArticlePost.php');
+//Log In Up and Out
+require_once('controllers/ctrlLog.php');
+//Articles
+require_once('controllers/ctrlArticles.php');
+//Commentaires
+require_once('controllers/ctrlComments.php');
 
 class Switcher
 {
+	
 	//initialisation variable
 	private $ctrlHomeView;
 	private $ctrlListPost;
-	private $ctrlPostView;
-	private $ctrlSignIn;
-	private $ctrlSignUp;
-	private $ctrlAdminView;
-	private $ctrlLogOut;
-	private $ctrlAddPost;
-	private $ctrlAddPostView;
-	private $ctrlDisplayArticles;
-	private $ctrldeletePost;
-	private $ctrlupdateArticle;
-	private $ctrlupdateArticlePost;
+	private $ctrlPostView;	
+	private $ctrlAdminView;	
+	private $ctrlLog;
+	private $ctrlArticles;
+	private $ctrlComments;	
 
 	//Constructeur
 	public function __construct()
 	{
-		$this-> ctrlHomeView = new ctrlHomeView();
-		$this-> ctrlListPost= new ctrlListPost();
-		$this-> ctrlPostView= new ctrlPostView();
-		$this-> ctrlSignIn= new ctrlSignIn();
-		$this-> ctrlSignUp= new ctrlSignUp();		
-		$this-> ctrlAdminView= new ctrlAdminView();
-		$this-> ctrlLogOut= new ctrlLogOut();
-		$this-> ctrlAddPost= new ctrlAddPost();
-		$this-> ctrlAddPostView= new ctrlAddPostView();
-		$this-> ctrlDisplayArticles= new ctrlDisplayArticles();
-		$this-> ctrldeletePost= new ctrldeletePost();
-		
-		$this-> ctrlupdateArticle= new ctrlupdateArticle();
-		$this-> ctrlupdateArticlePost= new ctrlupdateArticlePost();
+		$this-> ctrlHomeView = new \myrna\blog\controllers\ctrlHomeView();
+		$this-> ctrlListPost= new \myrna\blog\controllers\ctrlListPost();
+		$this-> ctrlPostView= new \myrna\blog\controllers\ctrlPostView();				
+		$this-> ctrlAdminView= new \myrna\blog\controllers\ctrlAdminView();
+		$this-> ctrlLog= new \myrna\blog\controllers\ctrlLog();
+		$this-> ctrlArticles= new \myrna\blog\controllers\ctrlArticles();
+		$this-> ctrlComments= new \myrna\blog\controllers\ctrlComments();		
 	}
 	
 	public function switchRequete()
@@ -63,29 +48,40 @@ class Switcher
 					case 'homeView':
 						$this-> ctrlHomeView->homeView();
 						break;
+					case 'contactView': // View Contact
+						$this-> ctrlHomeView->contactView();
+						break;
+					case 'checkContact': // Check View Contact
+						$this-> ctrlHomeView->checkContact();
+						break;
+					case 'fileUsefuls': // add Cv in the bdd
+						$this-> ctrlHomeView->fileUsefuls();
+						break;
+					case 'getCvDownload': // downloads CV
+						$this-> ctrlHomeView->getCvDownload();
+						break;
 
-					case 'getListPost': //Liste des posts
+					case 'getListPost': //Liste des posts 
 						$this-> ctrlListPost->getListPost();
 						break;
 
-					case 'getPostComments': //Post and comments
-						$this-> ctrlPostView->getPostComments();
-						break;
-
-						//LogIn/LogUp
-					
+						//LogIn/LogUp/LogOut					
 					case 'connectView': //LogIn
-						$this-> ctrlSignIn->connectView();
+						$this-> ctrlLog->connectView();
 						break;						
 					case 'checkingConnect': //LogIn
-						$this-> ctrlSignIn->checkingConnect();
+						$this-> ctrlLog->checkingConnect();
 						break;
 
 					case 'connectRegisterView': //LogUp
-						$this-> ctrlSignUp->connectRegisterView();
+						$this-> ctrlLog->connectRegisterView();
 						break;
 					case 'checkingRegister': //LogUp
-						$this-> ctrlSignUp->checkingRegister();
+						$this-> ctrlLog->checkingRegister();
+						break;
+
+					case 'logOut': //AdminView
+						$this-> ctrlLog->logOut();
 						break;
 					
 					//Administrateur
@@ -95,8 +91,9 @@ class Switcher
 
 					//Articles					
 					case 'addPostView': //View add post
-					$this-> ctrlAddPostView->addPostView();
-					break;
+					$this-> ctrlArticles->addPostView();
+						break;
+
 					case 'addPost': //traitement articles 
 						//();
 						if(isset($_POST['valider']) )
@@ -104,7 +101,7 @@ class Switcher
 							if(!empty($_POST['title']) AND !empty($_POST['chapo']) 
 								AND !empty($_POST['content']) AND !empty($_POST['author']) )
 							{
-								$this-> ctrlAddPost->addPost($_POST['title'],$_POST['chapo'],$_POST['content'],$_POST['author'] );
+								$this-> ctrlArticles->addPost($_POST['title'],$_POST['chapo'],$_POST['content'],$_POST['author'] );
 							}
 							else{
 								echo 'Recherche encore !';
@@ -112,45 +109,68 @@ class Switcher
 						}	
 						break;
 
+					//Articles
 					case 'displayArticle': //View all Articles
-					$this-> ctrlDisplayArticles->displayArticle();
-					break;
+					$this-> ctrlArticles->displayArticle();
+						break;
 					case 'deletePost': //Delete post
-					$this-> ctrldeletePost->deletePost();
-					break;	
+					$this-> ctrlArticles->deletePost();
+						break;	
 					case 'updateArticle': //Update post
-					$this-> ctrlupdateArticle->updateArticle();
-					break;
+					$this-> ctrlArticles->updateArticle();
+						break;
 					case 'updateArticlePost': //Form Update post
-					$this-> ctrlupdateArticlePost->updateArticlePost();
-					break;
-
-
-					//Deconnexion
-					case 'logOut': //AdminView
-						$this-> ctrlLogOut->logOut();
+					$this-> ctrlArticles->updateArticlePost();
 						break;
 
+					//Comments
+					case 'getPostComments': //Post and comments
+						$this-> ctrlComments->getPostComments();
+						break;
+					case 'addComments': //Post and comments
+						if (isset($_GET['id_article']) AND $_GET['id_article'] >0) 
+						{
+							if(!empty($_POST['author']) AND !empty($_POST['comments']) )
+							{
+								$this-> ctrlComments->addComments($_GET['id_article'],$_POST['author'],$_POST['comments']);
+							}
+							else
+							{
+								throw new Exception('Tous les champs ne sont pas remplis !');
+							}							
+						}
+						else{
+							throw new Exception('Aucun identifiant de publication envoyé !');			
+						}
+						break; 
+
+					case 'displayCommentUser': //display Comment
+					$this-> ctrlComments->displayCommentUser();
+						break;
+					case 'deleteComment': //Delete comment
+					$this-> ctrlComments->deleteComment();
+						break;	
+					case 'getCommentUser': //affiche comment
+					$this-> ctrlComments->getCommentUser();
+						break; 
+					case 'updateComments': //Update comment
+					$this-> ctrlComments->updateComments();
+						break; 
+
+
 					default:
-						$this-> ctrlHomeView->homeView();
-						//echo 'je suis avec toi';			
+						$this->ctrlHomeView->homeView();	
 						break;
 				}
 			}
 			else
 			{
 				$this->ctrlHomeView->homeView();
-				header('Location:index.php?action=homeView');
 			}   
 		} catch (Exception $e) 
 		{
 			echo 'Erreur : '.$e->getMessage();
 		}
-
-		//$this-> erreur($e->getMessage());
-			/*private function erreur($msgErreur){
-
-			} */
 	}
 
 }

@@ -1,5 +1,6 @@
 <?php
-//session_start();
+namespace myrna\blog\controllers;
+
 class ctrlAdminView{
 
 	public function adminView()

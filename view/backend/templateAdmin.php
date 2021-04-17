@@ -58,7 +58,7 @@
                         <a href="index.php?action=addPostView">Publier un article</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="index.php?action=afficherCommentaires">Gérer les membres</a>
+                        <a href="index.php?action=displayCommentUser">Gérer les membres</a>
                         <p> </p>
                     </li>
                     <li class="page-scroll">
@@ -89,9 +89,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-   <?= $content; ?> 
-
-
+   <?= $content; ?>  
  <!-- Footer -->
 <footer class="text-center">
     <div class="footer-above">
