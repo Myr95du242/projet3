@@ -15,18 +15,46 @@ class ctrlComments
 	}
 
 	//add Comment 
-	public function addComments($id_post,$author,$comment)
+	public function addComments($id_post,$pseudo,$comment)
 		{
 			$instance_comment=new \myrna\blog\model\CommentManager();
-			$comments=$instance_comment->addComment($id_post,$author,$comment);
-			if($comments === false)
+			$req= $instance_comment->checkConnect();
+			
+			if (!empty($_POST['pseudo']) AND !empty($_POST['comments'])) 
 			{
-				throw new \Exception('Impossible d\'ajouter le commentaire !');		
+				$pseudo=htmlspecialchars(trim($_POST['pseudo']));
+				$check= $req->prepare('SELECT pseudo FROM members WHERE pseudo=?');
+				$check->execute( array($pseudo) );
+				$data = $check->fetch();
+				$is_pseudo_exist=$check->rowcount(); 
+				if($is_pseudo_exist)
+				{
+					$_SESSION['id']= $data['id_member'];
+					$_SESSION['pseudo']= $pseudo;
+					$_SESSION['password']=$data['password'];
+					//$message='Bienvenue!';
+					//header('Location:index.php?action=getPostComments');
+
+					$comments=$instance_comment->addComment($id_post,$pseudo,$comment);
+						if($comments === false)
+						{
+							throw new \Exception('Impossible d\'ajouter le commentaire !');		
+						}
+						else
+						{
+							header('Location: index.php?action=getPostComments&id_article=' . $id_post);	
+						}
+				}
+				else{
+					$message='Connectez-vous ou renseignez le bon pseudo!';
+					header('Location: index.php?action=getPostComments&id_article='.$id_post.'&message='.$message);
+				}
 			}
 			else
 			{
-				header('Location: index.php?action=getPostComments&id_article=' . $id_post);	
+			 	throw new Exception("Les données doivent être remplies");			 		
 			}
+			
 		}
 
 	//Display User's comments

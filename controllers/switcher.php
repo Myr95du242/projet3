@@ -120,9 +120,15 @@ class Switcher
 					case 'addComments': //Post and comments
 						if (isset($_GET['id_article']) AND $_GET['id_article'] >0) 
 						{
-							if(!empty($_POST['author']) AND !empty($_POST['comments']) )
+							if(!empty($_POST['pseudo']) AND !empty($_POST['comments']) )
 							{
-								$this-> ctrlComments->addComments($_GET['id_article'],$_POST['author'],$_POST['comments']);
+								if (isset($_SESSION['pseudo'])) 
+								{
+									$this-> ctrlComments->addComments($_GET['id_article'],$_POST['pseudo'],$_POST['comments']);
+								}else{
+									//$message='Connectez-vous et renseignez le bon pseudo!';
+									header('Location: index.php?action=getPostComments&id_article='.$_GET['id_article']);
+									}
 							}
 							else
 							{

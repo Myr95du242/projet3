@@ -21,15 +21,13 @@ class ctrlLog
 		if (!empty($_POST['pseudo']) AND !empty($_POST['password']) )
 		{
 			$message='Ok !'; 
-			header('Location:index.php?action=connectView&message='.$message);	
-
+			header('Location:index.php?action=connectView&message='.$message);
 			$pseudo=htmlspecialchars($_POST['pseudo']);
 			$password=htmlspecialchars(trim($_POST['password']));
 
 			$check= $req->prepare('SELECT pseudo, password FROM members WHERE pseudo=?');
 			$check ->execute( array($pseudo) );
 			$data = $check->fetch();
-
 			$pseudo_admin_defaut= "admin";
 	        $mdp_admin_defaut= "admin1234";
 			if ($pseudo==$pseudo_admin_defaut AND $password==$mdp_admin_defaut) 

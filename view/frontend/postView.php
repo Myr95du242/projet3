@@ -34,12 +34,8 @@
                         <em> <?php if(isset($post['author']) AND !empty($post['author'])) {echo nl2br(htmlspecialchars($post['author']) ).'<br/>'; }?></em>
                     </a> 
                 </div>
-                <div class="col-md-3" ><!--d-none d-lg-block -->
-                    <svg class="bd-placeholder-img" width="200" height="250" xmlnx="htpp://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRation="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c"></rect>
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbail</text>
-                    </svg >
+                <div class="col-md-3" >                    
+                     <img class="img-responsive" src="pictures/33.jpg" alt="">
                 </div>
             </div>  
             <div class="row">        
@@ -48,8 +44,8 @@
                     <!-- Ajout des commentaires -->  
                     <form action="index.php?action=addComments&amp;id_article=<?= $post['id_post'] ?>" method="post">
                         <div class="mb-3 form-group">
-                            <label class="form-label" for="FormControlAuteur"> Auteur</label>
-                            <input id="FormControlAuteur" type="text" name="author" class="form-control" rows="3"/>   
+                            <label class="form-label" for="FormControlAuteur"> Pseudo</label>
+                            <input id="FormControlAuteur" type="text" name="pseudo" class="form-control" rows="3"/>   
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="FormControlContenu"> Commentaire</label>
@@ -59,6 +55,12 @@
                             <input type="submit" name="" />
                         </div>                        
                     </form>
+                        <?php
+                            if(isset($_GET['message']))
+                            {
+                                echo '<br/><font color="red">'.$_GET['message'].'</font>';
+                            } 
+                        ?>  
                     <div>
                         
                          <?php
