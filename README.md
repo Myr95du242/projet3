@@ -15,7 +15,7 @@ The site uses a database to record articles, comments and other.
 
 * Enter your Login signs in the file 'model/Manager.php'
 
-    * 'host'    => 'nom_hote',
+    * 'host'  => 'nom_hote',
     * 'dbname'  => 'BBD',
     * 'username'=> 'nom_utilisateur',
     * 'password'=> 'mot_de_passe'
@@ -23,13 +23,13 @@ The site uses a database to record articles, comments and other.
 ### ___Configurer l'envoie de mail___
 
 * '/config/mailer.php' contient un tableau qui doit être renseigné afin de rendre fonctionnels le formulaire de contact, le système de récupération du mot de passe ainsi que l'inscription au site.
-    * 'smtp' : l'adresse de votre serveur smtp
-    * 'port' : le port de votre serveur smtp
-    * 'mode' : le mode de votre serveur smtp
-    * 'username' : votre identifiant pour le serveur, souvent une adresse courriel
-    * 'password' : le mot de passe
-    * 'email' : l'adresse de l'administrateur, par exemple contact@monblog.com
-    * 'address' : l'adresse de votre site, par exemple www.monsite.fr
+    * 'smtp':l'adresse de votre serveur smtp
+    * 'port':le port de votre serveur smtp
+    * 'mode':le mode de votre serveur smtp
+    * 'username':votre identifiant pour le serveur, souvent une adresse courriel
+    * 'password':le mot de passe
+    * 'email':l'adresse de l'administrateur, par exemple contact@monblog.com
+    * 'address':l'adresse de votre site, par exemple www.monsite.fr
 
 ### ___Bootstrap___
 
