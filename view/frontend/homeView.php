@@ -1,12 +1,5 @@
 <?php $title='homeView';?>
 <?php ob_start();?>
-<<<<<<< HEAD
-<!-- Contenu à mettre dans le template -->    
-=======
-
-<!-- Contenu à mettre dans le template -->
-    
->>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
     <!-- HEADER -->
     <header  style="background-color: #ffcc14">
         <div class="container">
@@ -14,9 +7,9 @@
                 <div class="col-lg-12">
                     <img class="img-responsive" src="pictures/33.jpg" alt="">
                     <div class="intro-text">
-                        <span class="name">Myrna NZABI</span>
+                        <span class="name">Myrna's blog</span>
                         <hr class="star-light">
-                        <span class="skills">La personne qu'il faut à la place qui le faut ! </span>
+                        <span class="skills">Je vous souhaite la bienvenue sur ce blog qui en perpétuel évolution ! </span>
                     </div>
                 </div>
             </div>
@@ -46,24 +39,13 @@
                     </p>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-<<<<<<< HEAD
                     <?php      
-                      /* while ($data=$req->fetch()) 
-                        { */
-                            echo '<a class="btn btn-lg btn-outline" href="'.$data['url_file'].'"><i class="fa fa-download"></i> Download '.$data['name']. '</a>' ;
-                      //  } 
-                    ?>                                
-=======
-                                                 
->>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
+                        echo '<a class="btn btn-lg btn-outline" href="'.$data['url_file'].'"><i class="fa fa-download"></i> Download '.$data['name']. '</a>' ;                      
+                    ?>   
                 </div>
-            <!--    <div class="col-lg-8 col-lg-offset-2 text-center">
-                  <a class="btn btn-lg btn-outline" href=""><i class="fa fa-download"></i> Download </a>        
-                </div> -->
             </div>
         </div>
     </section>
-
     <?php $content=ob_get_clean();?>
     <?php require('template.php');?>
 

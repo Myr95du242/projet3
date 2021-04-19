@@ -4,11 +4,6 @@ require_once('Manager.php');
 
 class CommentManager extends Manager
 {	
-  
- /* public __construct()
-  {
-
-  } */
 	// retrieving comments to the post
 	public function getComments($postId)
 	{   
@@ -45,15 +40,6 @@ class CommentManager extends Manager
         return $req;
       }
 
-    //Check Comments
- /* public function checkGetComment()
-    {
-      $bdd=$this->bddConnexion(); 
-      $reqComment='SELECT * FROM comment WHERE id_comment=?';
-      $req=$bdd->prepare($reqComment);
-      return $req;
-    } */
-
    //deleteComment coté admin
   public function deleteComments($idPost)
   {
@@ -76,30 +62,6 @@ class CommentManager extends Manager
      $bdd= $this->bddConnexion(); 
      return $bdd;
   }
-<<<<<<< HEAD
-  // Downloads CV
-  public function  getCv()
-  {
-   /* $bdd=$this->bddConnexion();
-    $request='SELECT * FROM file WHERE url_file=?';      
-    $req=$bdd->prepare($request);
-    $data=$req->execute(array($idUrl));
-    return $data;*/
-    $instance=$bdd->query('SELECT * FROM file'); 
-    return $instance;
-  }
-   //Downloads docs
-/*  public  function fileDownloads($idUrl)
-  {
-    $bdd=$this->bddConnexion();        
-    $request='SELECT * FROM file WHERE url_file=?';       
-    $req=$bdd->prepare($request);
-    $data=$req->execute(array($idUrl));
-       return $data;
-  } */
-=======
-  
->>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 }
 	
 ?>

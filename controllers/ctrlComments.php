@@ -29,7 +29,6 @@ class ctrlComments
 			}
 		}
 
-//COMMENTAIRES gérer par ADMIN
 	//Display User's comments
 	public function displayCommentUser()
 	{
@@ -47,11 +46,7 @@ class ctrlComments
 	    }
 		 require('view/backend/usersView.php'); 
 	}
-<<<<<<< HEAD
-	//Delete commentaires des users par l'administrateur
-=======
-	//Delete user's comment by admin
->>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
+
 	public function deleteComment()
 	{
 		$instance_Comment=new \myrna\blog\model\CommentManager();
@@ -68,25 +63,20 @@ class ctrlComments
 			}
 			else
 			{
-				echo 'Id pas enregistré';
+				throw new \Exception('Id pas enregistré!');
 			}	
 		}
 		else
 		{
-			echo "Id introuvable !";
+			throw new \Exception('Id introuvable !'); 
 		}
 	}
 
 	//Comments  Frontend
-<<<<<<< HEAD
-	//Obtenir commentaire et afficher sur la page
-=======
-	//get comment and display view
->>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
+
 	public function getCommentUser()
 	{
 		$check=new \myrna\blog\model\CommentManager();
-
 		if(isset($_GET['id_article']) AND !empty($_GET['id_article']))
 		{			
 			$idComment=intval($_GET['id_article']);
@@ -98,31 +88,26 @@ class ctrlComments
 				$data= $comment->fetch();
 				$author=$data['author'];
 				$commentaire=str_replace('<br/>', '', $data['comments']);
-
-				//var_dump($data);
 				require_once('view/frontend/postView1.php');
 			}
 			else
 			{
-				echo 'Commentaire existe pas dans la bdd';
+				throw new \Exception('Commentaire existe pas dans la bdd'); 
 			}
 		}
 		else
 		{
-			echo "id_commentaire introuvable !";
+			throw new \Exception('id_commentaire introuvable !');
 		}
 	}
 	
 	public function updateComments()
 	{
 		$instance_post=new \myrna\blog\model\PostManager();
-		//$instance_comment=new \myrna\blog\model\CommentManager();
 		$checkComments=new \myrna\blog\model\CommentManager();
-
 		if(isset($_GET['id_article']) AND !empty($_GET['id_article']))
 		{			
 			$idComment=intval($_GET['id_article']);
-
 			$req_comment= $checkComments->CheckComment();
 			$req_comment->execute(array($idComment)); 			
 			if ($req_comment->rowCount()) 
@@ -131,36 +116,30 @@ class ctrlComments
 				{	
 					$post=$instance_post->getPost($_GET['id_article']);
 					$respComments=$checkComments->getComments($_GET['id_article']);
-
 					$auteur_saisi= htmlspecialchars($_POST['author']);
 					$commentaire_saisi= nl2br(htmlspecialchars($_POST['comments']));
-
 					$comment= $checkComments->updateComment($auteur_saisi,$commentaire_saisi,$idComment); 
-
 					if ($comment === false) 
 					{
-				        die('Impossible de modifier le commentaire !');
+				        throw new \Exception('Impossible de modifier le commentaire !');
 				    }
 				    else {
 				       header('Location:index.php?action=getListPost');
-				    //	header('Location:index.php?action=afficherComment&id='.$idComment);
 				   }
-
-					//header('Location:index.php?action=afficherComment&id='.$idComment); //exit;
 				}
 				else
 				{
-					echo 'les champs !';
+					throw new \Exception ('les champs !');
 				}			
 			}
 			else
 			{
-				echo 'id existe pas';
+				throw new \Exception( 'id existe pas');
 			}					 
 		}
 		else
 		{
-			echo "Id introuvable !";
+			throw new \Exception('Id introuvable !');
 		}	
 	}
 }

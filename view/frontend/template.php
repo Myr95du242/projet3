@@ -41,16 +41,15 @@
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="#page-top">
-                     <img src="pictures/logo1.png" width="40" heigt="30" alt="" border="1px solid red"></a>
-              <a class="navbar-brand">       Bienvenue <?php 
-                        if(empty($_SESSION['pseudo']))
-                        {
-                            
-                        }else{
-                            echo '<em>'.$_SESSION['pseudo'].' ! </em>';
-                        }
-                    ?>                        
-                </a>
+                  <img src="pictures/M.png" width="40" heigt="30" alt="" border="1px solid red"></a>
+	              <a class="navbar-brand">       Bienvenue <?php 
+	                        if(empty($_SESSION['pseudo']))
+	                        {	                            
+	                        }else{
+	                            echo '<em>'.$_SESSION['pseudo'].' ! </em>';
+	                        }
+	                    ?>                        
+	                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,8 +59,6 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="">
-                     <!-- <li class="hidden">
-                       <a href="#accueil">Accueil</a> -->
                       <a href="index.php?action=homeView">Accueil</a>
                     </li>
                     <li class="page-scroll">
@@ -82,7 +79,6 @@
                         }
                         ?>
                         </a>
-                        <p> </p>
                     </li>
                     <li class="page-scroll">
                         <a href="index.php?action=contactView">Contact</a>

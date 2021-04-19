@@ -5,15 +5,12 @@ require_once('Manager.php');
 
 class PostManager extends Manager
 {
-<<<<<<< HEAD
 
   /* Préparation d'insertion
    $sql=
 
 
   */
-=======
->>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
 	public function getPosts()
 	{
 	    $bdd=$this->bddConnexion();
@@ -92,8 +89,8 @@ class PostManager extends Manager
     {
        $bdd=$this->bddConnexion();        
        $request='SELECT * FROM file';       
-       $result=$bdd->query($request);
-       return $result;
+       $req=$bdd->query($request);
+       return $req;
     }
 }
 

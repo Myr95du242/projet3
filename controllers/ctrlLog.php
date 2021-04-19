@@ -7,19 +7,14 @@ require_once('model/CommentManager.php');
 class ctrlLog
 {	
 	//SignIn
-<<<<<<< HEAD:controllers/ctrlLog.php
-	function connectView(){
-		require('view/frontend/signIn.php');
-	}
-	function checkingConnect()
-=======
+
+	
 	public function connectView(){
 		require('view/frontend/signIn.php');
 	}
 	//Check sign In
 	public function checkingConnect()
->>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf:controllers/ctrlSignUp.php
-	{
+{
 		$checking=new \myrna\blog\model\CommentManager();
 		$req = $checking->checkConnect();
 
@@ -81,11 +76,8 @@ class ctrlLog
 	}
 
 	//SignUp
-<<<<<<< HEAD:controllers/ctrlLog.php
-	function connectRegisterView(){
-=======
+
 	public function connectRegisterView(){
->>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf:controllers/ctrlSignUp.php
 	require('view/frontend/signUp.php');
 	//var_dump($_SERVER);
 	}

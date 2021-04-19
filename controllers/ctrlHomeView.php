@@ -1,23 +1,14 @@
 <?php
 namespace myrna\blog\controllers;
-<<<<<<< HEAD
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 class ctrlHomeView
 {
-=======
-
-require_once('model/PostManager.php');
-require_once('model/CommentManager.php');
-
-
-class ctrlHomeView
-{
-	
-
->>>>>>> 115d28f39f4e95dce5f4f2415a764b9c31cf7bbf
   public function homeView() 
 	{
+		$instanceFile= new \myrna\blog\model\PostManager();
+	$req= $instanceFile->checkFile();
+	$data=$req->fetch();
 		require('view/frontend/homeView.php');
 	}
   ///Form contact
@@ -25,6 +16,7 @@ class ctrlHomeView
 	{	
 		require('view/frontend/contact.php');	
 	}
+
  ///Check View Contact 
  public function checkContact()
 	{
@@ -32,29 +24,30 @@ class ctrlHomeView
 		$result= $instance ->checkConnect();
 		
 		if( !empty($_POST['name']) AND !empty($_POST['email_adress']) AND
-			!empty($_POST['phone_number']) AND !empty($_POST['message']) )  
+			!empty($_POST['firstname']) AND !empty($_POST['message']) )  
 		{
 			$err_login='Ok !'; 
 			header('Location:index.php?action=contactView&err_login='.$err_login);
-
 			$name=htmlspecialchars(trim($_POST['name']));
+			$firstname=htmlspecialchars(trim($_POST['firstname']));			
 			$email_adress=htmlspecialchars(trim($_POST['email_adress']));
-			$phone_number=htmlspecialchars(trim($_POST['phone_number']));
 			$message=htmlspecialchars(trim($_POST['message'])); 			
-			$str_pseudo=strlen($pseudo);		 
-			if ($str_pseudo<=100)
+			$str_name=strlen($name);		 
+			if ($str_name<=100)
 			{ 
-				$err_login='Ok pour la longueur du pseudo !';
+				$err_login='Ok pour la longueur du name !';
 				header('Location:index.php?action=contactView&err_login='.$err_login);
 				if (filter_var($email_adress,FILTER_VALIDATE_EMAIL)) 
 					{
 						$err_login='le mail est correct !';
 						header('Location:index.php?action=contactView&err_login='.$err_login);					
-							$sql_insert='INSERT INTO contact_user(name,email_adress,phone_number,message)VALUES(?,?,?,?)';
+							$sql_insert='INSERT INTO contact_user(name,firstname,email_adress,message)VALUES(?,?,?,?)';
 							$insert=$result->prepare($sql_insert);
-							$insert->execute(array($name, $email_adress, $phone_number, $message));				
-							$err_login='Afficher le message !';
-							header('Location:index.php?action=contactView&err_login='.$err_login);			
+							/////
+							$insert->execute(array($name,$firstname, $email_adress, $message));
+							$data=$insert->fetch();
+							$this->Temporaire_Aiguillage($name,$firstname,
+								$email_adress,$message);									
 					}
 					else
 					{
@@ -64,7 +57,7 @@ class ctrlHomeView
 			}
 			else
 			{
-				$err_login='Le pseudo est trop lent !';
+				$err_login='Le name est trop lent !';
 				header('Location:index.php?action=contactView&err_login='.$err_login); 
 			}
 		}
@@ -73,6 +66,37 @@ class ctrlHomeView
 			$err_login='Veuillez remplir tous les champs !';
 			header('Location:index.php?action=contactView&err_login='.$err_login); 
 		} 
+	}
+	protected function Temporaire_Aiguillage($name, $firstname, $email_adress,$message)
+ 	{	
+	$msg='<div style="width:80%;margin:auto; padding:5%;">
+				<table style="background:#f7d669; text-align:center; width:100%;">
+					<tr style="background:#88f894">
+						<td><label> Message du visiteur via le blog MyLEOx <br/></label></td>
+					</tr>					
+					<tr>
+						<td><br/>Vous venez de recevoir un message de:&nbsp;<br/><b>'.ucfirst($name).'&nbsp;&nbsp;'.ucfirst($firstname). '</b><br/></td>
+					</tr>
+					<tr>
+						<td><br/>Joignez votre correspondant à partir de :&nbsp;<br/><b>'.$email_adress. '</b><br/></td>
+					</tr>
+					<tr>
+						<td>
+							Voici son message complet!
+						</td>
+					</tr>
+					<tr>
+						<td><b> Message: &nbsp;&nbsp;'.$message.'</b><br/><br/></td></tr></table></div>';		
+							var_dump($msg); 
+	$msg = "<html><head></head><body> ".$msg." </body></html>";				
+
+	$TO ="mnzabi.lan@gmail.com";
+	$from = "From" ."contactUser@blog.com". "\r\n";
+	$subject = "Contact via le blog's Myrna";
+	$headers = "From: contactUser@blog.com". "\r\n";
+	$headers .= "Reply-To: contactUser@blog.com"."\r\n";
+	$headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";						
+	//mail($TO, $subject, $msg, $headers);	La fonction mail ne fonctionne qu'en ligne				
 	}
 
  //Add docs
@@ -114,14 +138,4 @@ class ctrlHomeView
 	}
  }
 
- //Downloads get file
- public function getCvDownload()
- {	
-	$instanceFile= new \myrna\blog\model\PostManager();
-	$req= $instanceFile->checkFile();
-	$data=$req->fetch();
-	//var_dump($data);
-	//header('Location:index.php?action=homeView');
-	require('view/frontend/homeView.php');
- } 
 }
