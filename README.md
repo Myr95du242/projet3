@@ -1,5 +1,5 @@
 # projet3
-My first blog
+1.1 My first blog
 ====
 
 Projet 3  - application developer journey PHP - OpenClassrooms
